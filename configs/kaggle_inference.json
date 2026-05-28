@@ -1,0 +1,17 @@
+{
+  "enabled": true,
+  "owner": "yeltsinvalero",
+  "accelerator": "NvidiaTeslaT4",
+  "enable_internet": true,
+  "include_local_model_in_job_dataset": true,
+  "local_model_path": "models/best.pt",
+  "model_dataset_slug": "",
+  "model_filename": "best.pt",
+  "imgsz": 960,
+  "conf": 0.05,
+  "iou": 0.5,
+  "tracker": "bytetrack.yaml",
+  "poll_seconds": 30,
+  "outputs_dir": "server_runs",
+  "dataset_license": "unknown"
+}

@@ -1,0 +1,36 @@
+{
+  "classes": [
+    "bicycle",
+    "motorcycle",
+    "mototaxi",
+    "car",
+    "microbus",
+    "bus",
+    "articulated_bus",
+    "truck"
+  ],
+  "aliases": {
+    "bike": "bicycle",
+    "bicyclist": "bicycle",
+    "cycle": "bicycle",
+    "moto": "motorcycle",
+    "motorbike": "motorcycle",
+    "motorcycle": "motorcycle",
+    "mototaxi": "mototaxi",
+    "moto taxi": "mototaxi",
+    "tuk tuk": "mototaxi",
+    "tuktuk": "mototaxi",
+    "auto": "car",
+    "automobile": "car",
+    "car": "car",
+    "van": "microbus",
+    "minibus": "microbus",
+    "microbus": "microbus",
+    "bus": "bus",
+    "articulated bus": "articulated_bus",
+    "articulated_bus": "articulated_bus",
+    "truck": "truck",
+    "camion": "truck",
+    "camión": "truck"
+  }
+}

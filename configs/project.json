@@ -1,0 +1,26 @@
+{
+  "owner": "yeltsinvalero",
+  "dataset_slug": "",
+  "competition_slug": "",
+  "accelerator": "NvidiaTeslaT4",
+  "max_active_kernels": 2,
+  "pull_output_root": "outputs",
+  "kaggle_enable_internet": true,
+  "metric": "map50_95",
+  "minority_ap_weight": 0.15,
+  "target_classes": [
+    "bicycle",
+    "motorcycle",
+    "mototaxi",
+    "car",
+    "microbus",
+    "bus",
+    "articulated_bus",
+    "truck"
+  ],
+  "rare_classes": [
+    "mototaxi",
+    "microbus",
+    "articulated_bus"
+  ]
+}

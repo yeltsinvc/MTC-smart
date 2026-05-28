@@ -1,0 +1,12 @@
+{
+  "model_path": "models/best.pt",
+  "imgsz": 960,
+  "conf": 0.05,
+  "iou": 0.5,
+  "tracker": "bytetrack.yaml",
+  "device": "auto",
+  "jobs_dir": "server_runs",
+  "save_annotated_video": false,
+  "enable_openai_fallback": false,
+  "max_upload_mb": 1024
+}

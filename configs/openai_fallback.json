@@ -1,0 +1,25 @@
+{
+  "enabled": false,
+  "model": "gpt-5-mini",
+  "reasoning_effort": "minimal",
+  "max_items_per_run": 50,
+  "only_when": {
+    "track_stable_is_false": true,
+    "max_track_final_score": 0.62,
+    "max_vote_margin": 0.08,
+    "max_detection_conf": 0.38
+  },
+  "decision_policy": {
+    "allowed_output": "one_of_two_candidates_or_uncertain",
+    "min_model_confidence": 0.55,
+    "never_invent_new_class": true
+  },
+  "privacy": {
+    "send_crop_only": true,
+    "do_not_send_full_frame": true
+  },
+  "outputs": {
+    "candidates": "openai_fallback_candidates.csv",
+    "decisions": "openai_fallback_decisions.csv"
+  }
+}

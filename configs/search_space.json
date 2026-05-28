@@ -1,0 +1,132 @@
+{
+  "_seed_design_note": "Architecture comparison at constant imgsz=960 and comparable epochs/patience so the initial leader reflects model quality, not a resolution confound. Resolution scaling is explored later by the EvolutionAgent via promote_imgsz. Batch follows the per-scale T4 table; lr0 is lowered for the transformer (rtdetr).",
+  "seed_experiments": [
+    {
+      "id": "S001_yolo11s_960",
+      "family": "ultralytics",
+      "model": "yolo11s.pt",
+      "imgsz": 960,
+      "epochs": 45,
+      "batch": 12,
+      "optimizer": "AdamW",
+      "lr0": 0.001,
+      "patience": 14,
+      "seed": 17,
+      "augment": "small_objects",
+      "priority": 1,
+      "budget": "pilot",
+      "notes": "Architecture baseline yolo11s at the common 960 resolution."
+    },
+    {
+      "id": "S002_yolo11m_960",
+      "family": "ultralytics",
+      "model": "yolo11m.pt",
+      "imgsz": 960,
+      "epochs": 45,
+      "batch": 8,
+      "optimizer": "AdamW",
+      "lr0": 0.001,
+      "patience": 14,
+      "seed": 23,
+      "augment": "small_objects",
+      "priority": 2,
+      "budget": "pilot",
+      "notes": "Architecture comparison yolo11m at the common 960 resolution."
+    },
+    {
+      "id": "S003_yolov8x_960",
+      "family": "ultralytics",
+      "model": "yolov8x.pt",
+      "imgsz": 960,
+      "epochs": 45,
+      "batch": 2,
+      "optimizer": "AdamW",
+      "lr0": 0.001,
+      "patience": 14,
+      "seed": 31,
+      "augment": "small_objects",
+      "priority": 3,
+      "budget": "pilot",
+      "notes": "Large CNN comparator yolov8x at the common 960 resolution (no resolution advantage)."
+    },
+    {
+      "id": "S004_rtdetr_l_960",
+      "family": "ultralytics",
+      "model": "rtdetr-l.pt",
+      "imgsz": 960,
+      "epochs": 45,
+      "batch": 4,
+      "optimizer": "AdamW",
+      "lr0": 0.0002,
+      "patience": 14,
+      "seed": 41,
+      "augment": "low_aug",
+      "priority": 4,
+      "budget": "pilot",
+      "notes": "Transformer comparator rtdetr-l at the common 960 resolution; lighter augmentation and lower lr0 as is standard for DETR-family training."
+    }
+  ],
+  "augment_presets": {
+    "baseline": {
+      "hsv_h": 0.015,
+      "hsv_s": 0.5,
+      "hsv_v": 0.35,
+      "degrees": 0.0,
+      "translate": 0.08,
+      "scale": 0.45,
+      "shear": 0.0,
+      "fliplr": 0.5,
+      "mosaic": 0.8,
+      "mixup": 0.0,
+      "copy_paste": 0.0,
+      "close_mosaic": 10
+    },
+    "small_objects": {
+      "hsv_h": 0.012,
+      "hsv_s": 0.55,
+      "hsv_v": 0.45,
+      "degrees": 1.0,
+      "translate": 0.16,
+      "scale": 0.75,
+      "shear": 0.5,
+      "fliplr": 0.5,
+      "mosaic": 1.0,
+      "mixup": 0.10,
+      "copy_paste": 0.05,
+      "close_mosaic": 20
+    },
+    "low_aug": {
+      "hsv_h": 0.008,
+      "hsv_s": 0.35,
+      "hsv_v": 0.25,
+      "degrees": 0.0,
+      "translate": 0.05,
+      "scale": 0.25,
+      "shear": 0.0,
+      "fliplr": 0.5,
+      "mosaic": 0.4,
+      "mixup": 0.0,
+      "copy_paste": 0.0,
+      "close_mosaic": 5
+    }
+  },
+  "evolution": {
+    "promote_imgsz": [960, 1280, 1536],
+    "promote_epochs_factor": 1.6,
+    "near_tie_delta": 0.015,
+    "max_new_per_review": 6,
+    "candidate_models": [
+      "yolo11s.pt",
+      "yolo11m.pt",
+      "yolo11l.pt",
+      "yolov8x.pt",
+      "rtdetr-l.pt"
+    ]
+  },
+  "stopping": {
+    "patience_reviews": 3,
+    "min_seeds_for_sigma": 2,
+    "sigma_multiplier": 1.0,
+    "_note": "Objective is 'reached' when the best config's mean selection_score has not improved by more than sigma_multiplier*sigma over the last patience_reviews reviews, AND the leader has at least min_seeds_for_sigma seeds so sigma is real. Use `dvka confirm-leader` to add seed replicas."
+  }
+}

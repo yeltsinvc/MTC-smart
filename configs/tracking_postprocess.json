@@ -1,0 +1,19 @@
+{
+  "enabled": true,
+  "tracker": "bytetrack.yaml",
+  "conf": 0.05,
+  "iou": 0.5,
+  "max_videos": 3,
+  "class_consensus": {
+    "min_track_length": 3,
+    "confidence_weight": 0.55,
+    "geometry_weight": 0.30,
+    "frequency_weight": 0.15,
+    "switch_margin": 0.08
+  },
+  "outputs": {
+    "frame_detections": "tracking_frame_detections.csv",
+    "track_summary": "tracking_track_summary.csv",
+    "track_class_votes": "tracking_class_votes.csv"
+  }
+}

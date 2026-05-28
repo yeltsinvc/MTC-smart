@@ -1,0 +1,17 @@
+[project]
+name = "drone-vehicle-kaggle-agents"
+version = "0.1.0"
+description = "Agentic Kaggle pipeline for drone vehicle detection experiments."
+requires-python = ">=3.10"
+dependencies = [
+  "fastapi>=0.115.0",
+  "uvicorn[standard]>=0.30.0",
+  "python-multipart>=0.0.9"
+]
+
+[project.scripts]
+dvka = "dvka.cli:main"
+dvka-server = "dvka.server:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

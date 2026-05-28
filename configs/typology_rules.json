@@ -1,0 +1,80 @@
+{
+  "enabled": true,
+  "mode": "postprocess",
+  "reference": {
+    "class": "car",
+    "min_conf": 0.25,
+    "fallback_normalized_area": 0.0018,
+    "use_image_median": true
+  },
+  "features": {
+    "normalized_area": "bbox_width * bbox_height / image_width / image_height",
+    "aspect_ratio": "bbox_width / bbox_height",
+    "area_ratio_to_car": "normalized_area / median_car_normalized_area"
+  },
+  "rules": [
+    {
+      "target": "bicycle",
+      "allowed_base_classes": ["bicycle"],
+      "max_area_ratio_to_car": 0.45,
+      "notes": "Very small two-wheel class; keep only when detector already believes bicycle."
+    },
+    {
+      "target": "motorcycle",
+      "allowed_base_classes": ["motorcycle", "bicycle"],
+      "min_area_ratio_to_car": 0.18,
+      "max_area_ratio_to_car": 0.75,
+      "max_aspect_ratio": 2.4,
+      "notes": "Small motorized two-wheel object."
+    },
+    {
+      "target": "mototaxi",
+      "allowed_base_classes": ["motorcycle", "mototaxi", "car"],
+      "min_area_ratio_to_car": 0.55,
+      "max_area_ratio_to_car": 1.35,
+      "min_aspect_ratio": 0.75,
+      "max_aspect_ratio": 2.2,
+      "notes": "Often larger than motorcycle but smaller than car/microbus; useful when there are few labels."
+    },
+    {
+      "target": "car",
+      "allowed_base_classes": ["car", "microbus", "mototaxi"],
+      "min_area_ratio_to_car": 0.55,
+      "max_area_ratio_to_car": 1.55,
+      "notes": "Default reference class."
+    },
+    {
+      "target": "microbus",
+      "allowed_base_classes": ["car", "microbus", "bus", "van"],
+      "min_area_ratio_to_car": 1.45,
+      "max_area_ratio_to_car": 2.75,
+      "notes": "Bigger than car, smaller than normal bus."
+    },
+    {
+      "target": "bus",
+      "allowed_base_classes": ["microbus", "bus", "truck"],
+      "min_area_ratio_to_car": 2.45,
+      "max_area_ratio_to_car": 5.2,
+      "notes": "Large passenger vehicle."
+    },
+    {
+      "target": "articulated_bus",
+      "allowed_base_classes": ["bus", "articulated_bus", "truck"],
+      "min_area_ratio_to_car": 4.6,
+      "min_aspect_ratio": 2.1,
+      "notes": "Very large elongated bus; only apply when geometry strongly supports it."
+    },
+    {
+      "target": "truck",
+      "allowed_base_classes": ["truck", "bus", "car"],
+      "min_area_ratio_to_car": 2.0,
+      "min_aspect_ratio": 1.25,
+      "notes": "Large vehicle class; keep detector class unless bus/articulated_bus geometry is stronger."
+    }
+  ],
+  "confidence_blend": {
+    "detector_weight": 0.75,
+    "geometry_weight": 0.25,
+    "min_output_conf": 0.001
+  }
+}
