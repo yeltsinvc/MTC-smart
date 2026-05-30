@@ -7,6 +7,7 @@ from pathlib import Path
 
 from . import __version__
 from .config import settings
+from .colab_agent import build_colab
 from .data_agent import audit_dataset
 from .evolve_agent import confirm_leader, evolve
 from .experiments import active_count, load_queue, seed_queue, status_counts
@@ -61,6 +62,17 @@ def cmd_calibrate_geometry(args: argparse.Namespace) -> None:
 
 def cmd_build(args: argparse.Namespace) -> None:
     print_json({"built": build(exp_id=args.exp_id, limit=args.limit)})
+
+
+def cmd_build_colab(args: argparse.Namespace) -> None:
+    print_json(
+        {
+            "notebooks": [
+                str(build_colab(exp_id, Path(args.output_dir) if args.output_dir else None, single_gpu=not args.keep_batch))
+                for exp_id in args.exp_id
+            ]
+        }
+    )
 
 
 def cmd_launch(args: argparse.Namespace) -> None:
@@ -245,6 +257,12 @@ def build_parser() -> argparse.ArgumentParser:
     p_build.add_argument("--exp-id")
     p_build.add_argument("--limit", type=int, default=1)
     p_build.set_defaults(func=cmd_build)
+
+    p_build_colab = sub.add_parser("build-colab", help="generate Colab-ready notebook(s) for queued experiments")
+    p_build_colab.add_argument("exp_id", nargs="+")
+    p_build_colab.add_argument("--output-dir")
+    p_build_colab.add_argument("--keep-batch", action="store_true", help="keep the Kaggle T4x2 batch instead of halving it for single-GPU Colab")
+    p_build_colab.set_defaults(func=cmd_build_colab)
 
     p_launch = sub.add_parser("launch", help="build and push queued Kaggle notebook(s)")
     p_launch.add_argument("--limit", type=int, default=1)
