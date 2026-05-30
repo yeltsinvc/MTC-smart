@@ -1,80 +1,87 @@
 {
+  "_doc": "Tipologias SMART CHALLENGE 2026 (MTC) - 9 clases oficiales. Cotas geometricas calibradas con train.csv: mediana de area por clase relativa al 'auto' y percentiles p10/p90 reales. 'aspect_ratio' aqui = elongacion = lado_largo/lado_corto (>=1), robusta a la orientacion de las cajas OBB. OJO: auto, minibus y combi tienen tamanos casi iguales (ratio ~1.0-1.15) y se solapan; en ese rango la geometria casi no discrimina, hay que confiar en el detector. Recalibrar con: dvka calibrate-geometry <dataset>.",
   "enabled": true,
   "mode": "postprocess",
   "reference": {
-    "class": "car",
+    "class": "auto",
     "min_conf": 0.25,
     "fallback_normalized_area": 0.0018,
     "use_image_median": true
   },
   "features": {
     "normalized_area": "bbox_width * bbox_height / image_width / image_height",
-    "aspect_ratio": "bbox_width / bbox_height",
-    "area_ratio_to_car": "normalized_area / median_car_normalized_area"
+    "aspect_ratio": "max(bbox_width, bbox_height) / min(bbox_width, bbox_height)",
+    "area_ratio_to_car": "normalized_area / median_auto_normalized_area"
   },
   "rules": [
     {
-      "target": "bicycle",
-      "allowed_base_classes": ["bicycle"],
-      "max_area_ratio_to_car": 0.45,
-      "notes": "Very small two-wheel class; keep only when detector already believes bicycle."
-    },
-    {
-      "target": "motorcycle",
-      "allowed_base_classes": ["motorcycle", "bicycle"],
-      "min_area_ratio_to_car": 0.18,
-      "max_area_ratio_to_car": 0.75,
-      "max_aspect_ratio": 2.4,
-      "notes": "Small motorized two-wheel object."
+      "target": "motocicleta",
+      "allowed_base_classes": ["motocicleta", "mototaxi"],
+      "min_area_ratio_to_car": 0.06,
+      "max_area_ratio_to_car": 0.32,
+      "notes": "Clase mas pequena y bien separada (area mediana ~0.17x auto, p10-p90 0.12-0.26)."
     },
     {
       "target": "mototaxi",
-      "allowed_base_classes": ["motorcycle", "mototaxi", "car"],
-      "min_area_ratio_to_car": 0.55,
-      "max_area_ratio_to_car": 1.35,
-      "min_aspect_ratio": 0.75,
-      "max_aspect_ratio": 2.2,
-      "notes": "Often larger than motorcycle but smaller than car/microbus; useful when there are few labels."
+      "allowed_base_classes": ["mototaxi", "motocicleta", "auto"],
+      "min_area_ratio_to_car": 0.30,
+      "max_area_ratio_to_car": 0.85,
+      "notes": "Mayor que motocicleta, menor que auto (area ~0.55x auto, p10-p90 0.47-0.68)."
     },
     {
-      "target": "car",
-      "allowed_base_classes": ["car", "microbus", "mototaxi"],
-      "min_area_ratio_to_car": 0.55,
-      "max_area_ratio_to_car": 1.55,
-      "notes": "Default reference class."
+      "target": "auto",
+      "allowed_base_classes": ["auto", "minibus", "combi", "mototaxi"],
+      "min_area_ratio_to_car": 0.65,
+      "max_area_ratio_to_car": 1.45,
+      "notes": "Clase de referencia (area ~1.0, p10-p90 0.72-1.28). Se solapa con minibus y combi: preferir clase del detector."
+    },
+    {
+      "target": "minibus",
+      "allowed_base_classes": ["minibus", "auto", "combi", "camion"],
+      "min_area_ratio_to_car": 0.70,
+      "max_area_ratio_to_car": 1.60,
+      "notes": "Casi del tamano del auto (area ~1.11x auto, p10-p90 0.79-1.48). Solapa con auto/combi; geometria poco discriminante."
+    },
+    {
+      "target": "combi",
+      "allowed_base_classes": ["combi", "auto", "minibus", "camion"],
+      "min_area_ratio_to_car": 0.75,
+      "max_area_ratio_to_car": 1.65,
+      "notes": "Tamano similar a auto/minibus (area ~1.15x auto, p10-p90 0.84-1.52). Solapa fuerte; preferir clase del detector."
+    },
+    {
+      "target": "camion",
+      "allowed_base_classes": ["camion", "auto", "combi", "minibus", "microbus"],
+      "min_area_ratio_to_car": 0.85,
+      "max_area_ratio_to_car": 2.90,
+      "notes": "Tamano variable (area ~1.51x auto, p10-p90 0.94-2.70). Solapa con auto por abajo y microbus por arriba."
     },
     {
       "target": "microbus",
-      "allowed_base_classes": ["car", "microbus", "bus", "van"],
-      "min_area_ratio_to_car": 1.45,
-      "max_area_ratio_to_car": 2.75,
-      "notes": "Bigger than car, smaller than normal bus."
+      "allowed_base_classes": ["microbus", "camion", "combi", "omnibus"],
+      "min_area_ratio_to_car": 1.00,
+      "max_area_ratio_to_car": 4.30,
+      "notes": "Mayor que auto, rango amplio (area ~2.22x auto, p10-p90 1.06-4.04)."
     },
     {
-      "target": "bus",
-      "allowed_base_classes": ["microbus", "bus", "truck"],
-      "min_area_ratio_to_car": 2.45,
-      "max_area_ratio_to_car": 5.2,
-      "notes": "Large passenger vehicle."
+      "target": "omnibus",
+      "allowed_base_classes": ["omnibus", "microbus", "articulado", "camion"],
+      "min_area_ratio_to_car": 2.30,
+      "max_area_ratio_to_car": 5.40,
+      "min_aspect_ratio": 2.00,
+      "notes": "Bus grande de pasajeros (area ~3.09x auto, p10-p90 2.45-5.13)."
     },
     {
-      "target": "articulated_bus",
-      "allowed_base_classes": ["bus", "articulated_bus", "truck"],
-      "min_area_ratio_to_car": 4.6,
-      "min_aspect_ratio": 2.1,
-      "notes": "Very large elongated bus; only apply when geometry strongly supports it."
-    },
-    {
-      "target": "truck",
-      "allowed_base_classes": ["truck", "bus", "car"],
-      "min_area_ratio_to_car": 2.0,
-      "min_aspect_ratio": 1.25,
-      "notes": "Large vehicle class; keep detector class unless bus/articulated_bus geometry is stronger."
+      "target": "articulado",
+      "allowed_base_classes": ["articulado", "omnibus", "camion"],
+      "min_area_ratio_to_car": 3.00,
+      "min_aspect_ratio": 3.00,
+      "notes": "Bus articulado: grande y muy alargado (area ~3.43x auto, elongacion mediana ~3.77). Clase mas rara (250 cajas); aplicar solo con geometria fuerte."
     }
   ],
   "confidence_blend": {
-    "detector_weight": 0.75,
-    "geometry_weight": 0.25,
+    "detector_weight": 0.70,
+    "geometry_weight": 0.30,
     "min_output_conf": 0.001
   }
 }

@@ -1,0 +1,62 @@
+{
+  "groups": {
+    "dos_ruedas": [
+      "motocicleta",
+      "mototaxi"
+    ],
+    "livianos": [
+      "auto",
+      "combi",
+      "minibus"
+    ],
+    "medianos": [
+      "microbus",
+      "camion"
+    ],
+    "grandes": [
+      "omnibus",
+      "articulado"
+    ]
+  },
+  "features": [
+    "log_area_ratio",
+    "aspect",
+    "ang_sin2",
+    "ang_cos2",
+    "n_veh_frame",
+    "area_rank_pct",
+    "area_rel_medfr",
+    "nn_dist_norm",
+    "nn_area_ratio",
+    "pos_x",
+    "pos_y"
+  ],
+  "macro_f1": {
+    "fino_directo_geo": 0.61,
+    "fino_directo_geo_rel": 0.872,
+    "jerarquico_oracle_rel": 0.916,
+    "solo_super_grupos": 0.936
+  },
+  "per_class_fino_rel": {
+    "auto": 0.98,
+    "combi": 0.856,
+    "microbus": 0.814,
+    "minibus": 0.689,
+    "omnibus": 0.896,
+    "articulado": 0.833,
+    "camion": 0.875,
+    "mototaxi": 0.907,
+    "motocicleta": 0.992
+  },
+  "per_class_jerarquico_oracle": {
+    "auto": 0.988,
+    "combi": 0.885,
+    "microbus": 0.872,
+    "minibus": 0.716,
+    "omnibus": 0.985,
+    "articulado": 0.858,
+    "camion": 0.99,
+    "mototaxi": 0.955,
+    "motocicleta": 0.995
+  }
+}

@@ -1,0 +1,330 @@
+{
+  "n_boxes": 601934,
+  "n_videos": 1047,
+  "models": {
+    "ratio": {
+      "features": [
+        "log_area_ratio"
+      ],
+      "macro_f1_cv": [
+        0.34498175570737954,
+        0.013441587978775647
+      ],
+      "balanced_acc_cv": [
+        0.5749034805319119,
+        0.02984849584481424
+      ],
+      "per_class_f1": {
+        "auto": 0.769,
+        "combi": 0.155,
+        "microbus": 0.155,
+        "minibus": 0.083,
+        "omnibus": 0.475,
+        "articulado": 0.06,
+        "camion": 0.291,
+        "mototaxi": 0.21,
+        "motocicleta": 0.91
+      },
+      "per_class_precision": {
+        "auto": 0.965,
+        "combi": 0.089,
+        "microbus": 0.102,
+        "minibus": 0.05,
+        "omnibus": 0.353,
+        "articulado": 0.031,
+        "camion": 0.541,
+        "mototaxi": 0.119,
+        "motocicleta": 0.854
+      },
+      "per_class_recall": {
+        "auto": 0.639,
+        "combi": 0.587,
+        "microbus": 0.324,
+        "minibus": 0.239,
+        "omnibus": 0.727,
+        "articulado": 0.608,
+        "camion": 0.199,
+        "mototaxi": 0.877,
+        "motocicleta": 0.975
+      },
+      "support": {
+        "auto": 481731,
+        "combi": 10152,
+        "microbus": 2802,
+        "minibus": 18941,
+        "omnibus": 2283,
+        "articulado": 250,
+        "camion": 32668,
+        "mototaxi": 5539,
+        "motocicleta": 47568
+      },
+      "ratio_decision_table": [
+        {
+          "ratio_min": 0.03,
+          "ratio_max": 0.336,
+          "clase": "motocicleta"
+        },
+        {
+          "ratio_min": 0.34,
+          "ratio_max": 0.674,
+          "clase": "mototaxi"
+        },
+        {
+          "ratio_min": 0.681,
+          "ratio_max": 0.703,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.71,
+          "ratio_max": 0.748,
+          "clase": "mototaxi"
+        },
+        {
+          "ratio_min": 0.756,
+          "ratio_max": 0.78,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.788,
+          "ratio_max": 0.796,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.804,
+          "ratio_max": 0.813,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.821,
+          "ratio_max": 0.83,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.838,
+          "ratio_max": 0.838,
+          "clase": "mototaxi"
+        },
+        {
+          "ratio_min": 0.847,
+          "ratio_max": 0.847,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.856,
+          "ratio_max": 0.856,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.865,
+          "ratio_max": 0.865,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.874,
+          "ratio_max": 0.874,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.883,
+          "ratio_max": 0.921,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 0.93,
+          "ratio_max": 0.95,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.96,
+          "ratio_max": 0.96,
+          "clase": "mototaxi"
+        },
+        {
+          "ratio_min": 0.97,
+          "ratio_max": 0.98,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 0.99,
+          "ratio_max": 0.99,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.0,
+          "ratio_max": 1.043,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 1.053,
+          "ratio_max": 1.053,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.064,
+          "ratio_max": 1.064,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 1.076,
+          "ratio_max": 1.076,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.087,
+          "ratio_max": 1.133,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 1.145,
+          "ratio_max": 1.145,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.157,
+          "ratio_max": 1.157,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 1.169,
+          "ratio_max": 1.169,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.181,
+          "ratio_max": 1.181,
+          "clase": "auto"
+        },
+        {
+          "ratio_min": 1.193,
+          "ratio_max": 1.193,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.206,
+          "ratio_max": 1.206,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.218,
+          "ratio_max": 1.218,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.231,
+          "ratio_max": 1.231,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.244,
+          "ratio_max": 1.257,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.27,
+          "ratio_max": 1.27,
+          "clase": "camion"
+        },
+        {
+          "ratio_min": 1.283,
+          "ratio_max": 1.283,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.296,
+          "ratio_max": 1.296,
+          "clase": "camion"
+        },
+        {
+          "ratio_min": 1.31,
+          "ratio_max": 1.324,
+          "clase": "minibus"
+        },
+        {
+          "ratio_min": 1.337,
+          "ratio_max": 1.715,
+          "clase": "combi"
+        },
+        {
+          "ratio_min": 1.733,
+          "ratio_max": 1.984,
+          "clase": "camion"
+        },
+        {
+          "ratio_min": 2.004,
+          "ratio_max": 2.27,
+          "clase": "microbus"
+        },
+        {
+          "ratio_min": 2.294,
+          "ratio_max": 3.23,
+          "clase": "articulado"
+        },
+        {
+          "ratio_min": 3.264,
+          "ratio_max": 15.0,
+          "clase": "omnibus"
+        }
+      ]
+    },
+    "geo": {
+      "features": [
+        "log_area_ratio",
+        "aspect",
+        "ang_sin2",
+        "ang_cos2"
+      ],
+      "macro_f1_cv": [
+        0.612397141256541,
+        0.018297786565893044
+      ],
+      "balanced_acc_cv": [
+        0.7579661452565674,
+        0.018980695387008473
+      ],
+      "per_class_f1": {
+        "auto": 0.94,
+        "combi": 0.603,
+        "microbus": 0.468,
+        "minibus": 0.413,
+        "omnibus": 0.543,
+        "articulado": 0.191,
+        "camion": 0.691,
+        "mototaxi": 0.699,
+        "motocicleta": 0.958
+      },
+      "per_class_precision": {
+        "auto": 0.981,
+        "combi": 0.493,
+        "microbus": 0.363,
+        "minibus": 0.309,
+        "omnibus": 0.436,
+        "articulado": 0.118,
+        "camion": 0.651,
+        "mototaxi": 0.564,
+        "motocicleta": 0.937
+      },
+      "per_class_recall": {
+        "auto": 0.901,
+        "combi": 0.777,
+        "microbus": 0.656,
+        "minibus": 0.62,
+        "omnibus": 0.721,
+        "articulado": 0.512,
+        "camion": 0.736,
+        "mototaxi": 0.919,
+        "motocicleta": 0.981
+      },
+      "support": {
+        "auto": 481731,
+        "combi": 10152,
+        "microbus": 2802,
+        "minibus": 18941,
+        "omnibus": 2283,
+        "articulado": 250,
+        "camion": 32668,
+        "mototaxi": 5539,
+        "motocicleta": 47568
+      }
+    }
+  }
+}

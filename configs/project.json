@@ -1,26 +1,34 @@
 {
   "owner": "yeltsinvalero",
   "dataset_slug": "",
-  "competition_slug": "",
+  "competition_slug": "mtc-smart-challenge-ia-para-la-movilidad-del-peru",
   "accelerator": "NvidiaTeslaT4",
   "max_active_kernels": 2,
   "pull_output_root": "outputs",
   "kaggle_enable_internet": true,
+  "task": "obb",
   "metric": "map50_95",
-  "minority_ap_weight": 0.15,
+  "official_metric": "macro_ap_riou",
+  "official_metric_thresholds": [0.50, 0.55, 0.60, 0.65, 0.70, 0.75, 0.80],
+  "_metric_note": "La metrica oficial del concurso es Macro AP-rIoU@[0.50:0.80] (promedio NO ponderado por clase y por umbral de rotated IoU). Es macro: todas las clases pesan igual, por eso las clases raras importan tanto como 'auto'. 'metric' (map50_95) es solo el proxy interno de validacion YOLO.",
+  "minority_ap_weight": 0.30,
   "target_classes": [
-    "bicycle",
-    "motorcycle",
-    "mototaxi",
-    "car",
+    "auto",
+    "combi",
     "microbus",
-    "bus",
-    "articulated_bus",
-    "truck"
+    "minibus",
+    "omnibus",
+    "articulado",
+    "camion",
+    "mototaxi",
+    "motocicleta"
   ],
   "rare_classes": [
-    "mototaxi",
+    "articulado",
+    "omnibus",
     "microbus",
-    "articulated_bus"
-  ]
+    "mototaxi",
+    "combi"
+  ],
+  "_class_support_note": "Detecciones en train.csv por clase: auto=481731, motocicleta=47568, camion=32668, minibus=18941, combi=10152, mototaxi=5539, microbus=2802, omnibus=2283, articulado=250. 'rare_classes' = las de menor soporte, criticas porque la metrica es macro."
 }

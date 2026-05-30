@@ -1,0 +1,13 @@
+{
+  "id": "yeltsinvalero/mtc-obb-pipeline",
+  "title": "MTC OBB Pipeline",
+  "code_file": "mtc_obb_pipeline.ipynb",
+  "language": "python",
+  "kernel_type": "notebook",
+  "is_private": true,
+  "enable_gpu": true,
+  "enable_internet": true,
+  "dataset_sources": ["yeltsinvalero/mtc-smart-challenge-2026-data"],
+  "competition_sources": ["mtc-smart-challenge-ia-para-la-movilidad-del-peru"],
+  "kernel_sources": []
+}
